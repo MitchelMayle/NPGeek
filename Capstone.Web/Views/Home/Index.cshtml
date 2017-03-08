@@ -15,7 +15,7 @@
         <img src="~/Content/img/parks/@(park.ParkImage.ToLower()).jpg" class="parkImage"/>
 
         <div class="parkText">
-            <div class="parkName">@Html.ActionLink(@park.Name, "ParkDetail", "Home"), @park.State</div>
+            <div class="parkName">@Html.ActionLink(@park.Name, "ParkDetail", "Home", new { parkName = park.Name}, null), @park.State</div>
             <div class="parkDescription">@park.Description</div>
         </div>
 

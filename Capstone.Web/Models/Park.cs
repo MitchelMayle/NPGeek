@@ -11,5 +11,17 @@ namespace Capstone.Web.Models
         public string State { get; set; }
         public string Description { get; set; }
         public string ParkImage { get; set; }
+        public int Acreage { get; set; }
+        public int Elevation { get; set; }
+        public double MilesOfTrail { get; set; }
+        public int NumberOfCampSites { get; set; }
+        public string Climate { get; set; }
+        public int YearFound { get; set; }
+        public int AnnualVisitorCount { get; set; }
+        public string Quote { get; set; }
+        public string QuoteSource { get; set; }
+        public int EntryFee { get; set; }
+        public int NumberAnimalSpecies { get; set; }
+
     }
 }

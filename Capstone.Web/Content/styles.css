@@ -51,6 +51,7 @@ nav {
 
 #main {
     width: 100%;
+   
 }
 
 
@@ -143,3 +144,28 @@ section.result {
 .parkDescription{
     width: 60%;
 }
+.textTitle{
+    color:darkred;
+    font-weight:bold;
+}
+p{
+   
+    margin:0px;
+    padding:0px;
+}
+.entireparkdetail{
+    margin-left:1%;
+}
+.quote{
+    color:lightseagreen;
+}
+
+.imgdiv{
+   margin-left:30%;
+
+}
+/*.imgdiv img {
+    display:block;
+    left: -50%;
+    position:relative;
+}*/
