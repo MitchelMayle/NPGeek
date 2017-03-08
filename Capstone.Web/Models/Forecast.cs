@@ -12,27 +12,26 @@ namespace Capstone.Web.Models
         public string Condition { get; set; }
         public int ForecastDay { get; set; }
 
-        public DateTime Today { get; set; }
         public string GetAdvisory()
         {
             if (Condition == "rain")
             {
-                return "Pack rain gear and wear waterproff shoes";
+                return "Pack rain gear and wear waterproff shoes.";
             }
             else if (Condition == "thunderstorms")
             {
-                return "Seek shelter and avoid hiking on exposed ridges";
+                return "Seek shelter and avoid hiking on exposed ridges.";
             }
             else if (Condition == "sun")
             {
-                return "Pack sunblock";
+                return "Pack sunblock.";
             }
             else if (Condition == "snow")
             {
-                return "Pack snowshoes";
+                return "Pack snowshoes.";
             }
             else
-                return "Cloudy sky";
+                return "Cloudy sky.";
         }
 
         public string GetTempAdvisory()
@@ -44,7 +43,7 @@ namespace Capstone.Web.Models
             }
             if(HighTemp-LowTemp >=20)
             {
-                tempAdvice += "wear breathable layers clothes. ";
+                tempAdvice += "Wear breathable layers clothes. ";
             }
            if(LowTemp<20)
             {

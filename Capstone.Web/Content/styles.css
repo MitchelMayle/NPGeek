@@ -122,58 +122,78 @@ section.result {
     margin-right: auto;
 }
 
-.entirePark{
+.entirePark {
     display: inline-flex;
     margin: 1%;
-    
 }
 
-.parkImage{
+.parkImage {
     margin-right: 1%;
 }
 
-.parkName{
+.parkName {
     font-weight: bold;
 }
 
-.parkName a{
-    color: black;
-}
+    .parkName a {
+        color: black;
+    }
 
-.parkDescription{
+.parkDescription {
     width: 60%;
 }
-.textTitle{
-    color:darkred;
-    font-weight:bold;
-}
-p{
-   
-    margin:0px;
-    padding:0px;
-}
-.entireparkdetail{
-    margin-left:1%;
-}
-.quote{
-    color:lightseagreen;
+
+.textTitle {
+    color: darkred;
+    font-weight: bold;
 }
 
-.imgdiv{
-   margin-left:30%;
-
+p {
+    margin: 0px;
+    padding: 0px;
 }
-/*.imgdiv img {
-    display:block;
-    left: -50%;
-    position:relative;
-}*/
 
-.weather{
+.entireparkdetail {
+    margin-left: 1%;
+}
+
+.quote {
+    color: lightseagreen;
+}
+
+.imgdiv {
+    margin-left: 30%;
+}
+
+.weather {
     display: flex;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.weatherImage {
+    max-width: 35%;
+}
+
+.weatherTitle {
     text-align: center;
 }
 
-.weatherImage{
-   max-width: 35%;
+.singleDayForecast {
+    margin: 1%;
+}
+
+.dayOfWeek{
+    font-weight: bold;
+    color: #9020a6;
+}
+
+.condition {
+    font-weight: bold;
+}
+
+.advisory {
+    font-style: italic;
 }
