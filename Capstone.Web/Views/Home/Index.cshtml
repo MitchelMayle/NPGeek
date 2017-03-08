@@ -1,0 +1,24 @@
+﻿@using Capstone.Web.Models
+@model List<Park>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ALL PARKS</h2>
+
+@foreach (var park in Model)
+{
+    <div class="entirePark">
+
+        <img src="~/Content/img/parks/@(park.ParkImage.ToLower()).jpg" class="parkImage"/>
+
+        <div class="parkText">
+            <div class="parkName">@Html.ActionLink(@park.Name, "ParkDetail", "Home"), @park.State</div>
+            <div class="parkDescription">@park.Description</div>
+        </div>
+
+    </div>
+}
+

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/styles.css" />
+</head>
+<body>
+    <header>
+        <p>National Park Weather Service</p>
+    </header>
+    <nav>
+        <ul>
+            <li>@Html.ActionLink("Home Page", "Index", "Home")</li>
+
+        </ul>
+    </nav>
+
+    <section id="main">
+
+        @RenderBody()
+
+    </section>
+
+</body>
+</html>
