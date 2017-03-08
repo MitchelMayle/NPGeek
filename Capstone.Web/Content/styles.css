@@ -51,7 +51,6 @@ nav {
 
 #main {
     width: 100%;
-   
 }
 
 
@@ -169,3 +168,12 @@ p{
     left: -50%;
     position:relative;
 }*/
+
+.weather{
+    display: flex;
+    text-align: center;
+}
+
+.weatherImage{
+   max-width: 35%;
+}

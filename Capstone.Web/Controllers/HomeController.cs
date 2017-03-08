@@ -23,7 +23,11 @@ namespace Capstone.Web.Controllers
 
         public ActionResult ParkDetail(string parkName)
         {
-            return View("ParkDetail", parkDAL.GetParkDetail(parkName));
+            Park park = parkDAL.GetParkDetail(parkName);
+
+            park.FiveDayForecast = parkDAL.GetFiveDayForecast(park.ParkImage);
+
+            return View("ParkDetail", park);
         }
     }
 }

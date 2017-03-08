@@ -11,6 +11,7 @@ namespace Capstone.Web.DAL
     {
         private const string SQL_GetAllParks = "SELECT * FROM park;";
         private const string SQL_GetParkDetails = "SELECT * FROM park where parkName=@parkName;";
+        private const string SQL_GetFiveDayForecast = "SELECT * FROM weather WHERE parkCode = @parkCode;";
 
         private string connectionString;
         public ParkSqlDAL(string connectionString)
@@ -93,7 +94,43 @@ namespace Capstone.Web.DAL
                 throw;
             }
             return p;
+        }
 
+        public List<Forecast> GetFiveDayForecast(string parkCode)
+        {
+            List<Forecast> forecast = new List<Forecast>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetFiveDayForecast, conn);
+                    cmd.Parameters.AddWithValue("@parkCode", parkCode);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Forecast f = new Forecast()
+                        {
+                            ForecastDay = Convert.ToInt32(reader["fiveDayForecastValue"]),
+                            HighTemp = Convert.ToInt32(reader["high"]),
+                            LowTemp = Convert.ToInt32(reader["low"]),
+                            Condition = Convert.ToString(reader["forecast"])
+                        };
+
+                        forecast.Add(f);
+                    }
+                
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return forecast;
         }
     }
 }

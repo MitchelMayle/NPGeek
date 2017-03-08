@@ -121,7 +121,7 @@
     <Content Include="Content\img\parks\ynp2.jpg" />
     <Content Include="Content\img\scenery.png" />
     <Content Include="Content\img\weather\cloudy.png" />
-    <Content Include="Content\img\weather\partlyCloudy.png" />
+    <Content Include="Content\img\weather\partly cloudy.png" />
     <Content Include="Content\img\weather\rain.png" />
     <Content Include="Content\img\weather\snow.png" />
     <Content Include="Content\img\weather\sunny.png" />
@@ -139,6 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Forecast.cs" />
     <Compile Include="Models\Park.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
