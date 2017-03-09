@@ -10,11 +10,11 @@ namespace Capstone.Web.DAL
     public class ParkSqlDAL : IParkDAL
     {
         private const string SQL_GetAllParks = "SELECT * FROM park;";
-        private const string SQL_GetParkDetails = "SELECT * FROM park where parkName=@parkName;";
+        private const string SQL_GetParkDetails = "SELECT * FROM park WHERE parkName = @parkName;";
         private const string SQL_GetFiveDayForecast = "SELECT * FROM weather WHERE parkCode = @parkCode;";
 
-        private const string SQL_SaveSurvey = "INSERT INTO survey_result values(@parkCode,@emailAddress,@state,@activityLevel);";
-        private const string SQL_GetAllSurveys = "SELECT park.parkname,count(survey_result.parkcode) as count FROM survey_result INNER JOIN park on park.parkcode=survey_result.parkcode GROUP BY park.parkname;";
+        private const string SQL_SaveSurvey = "INSERT INTO survey_result VALUES(@parkCode, @emailAddress, @state, @activityLevel);";
+        private const string SQL_GetAllSurveys = "SELECT park.parkName,count(survey_result.parkCode) AS count FROM survey_result INNER JOIN park on park.parkCode = survey_result.parkCode GROUP BY park.parkName;";
 
         private string connectionString;
         public ParkSqlDAL(string connectionString)
@@ -64,9 +64,11 @@ namespace Capstone.Web.DAL
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand(SQL_GetParkDetails, conn);
                     conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetParkDetails, conn);
+                    
                     cmd.Parameters.AddWithValue("@parkName", parkName);
+
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -76,18 +78,16 @@ namespace Capstone.Web.DAL
                         p.Description = Convert.ToString(reader["parkDescription"]);
                         p.ParkImage = Convert.ToString(reader["parkCode"]);
                         p.Acreage = Convert.ToInt32(reader["Acreage"]);
-                        p.Elevation = Convert.ToInt32(reader["elevationinfeet"]);
-                        p.MilesOfTrail = Convert.ToDouble(reader["milesoftrail"]);
-                        p.NumberOfCampSites = Convert.ToInt32(reader["numberofcampsites"]);
+                        p.Elevation = Convert.ToInt32(reader["elevationInFeet"]);
+                        p.MilesOfTrail = Convert.ToDouble(reader["milesOfTrail"]);
+                        p.NumberOfCampSites = Convert.ToInt32(reader["numberOfCampsites"]);
                         p.Climate = Convert.ToString(reader["climate"]);
-                        p.YearFound = Convert.ToInt32(reader["yearfounded"]);
-                        p.AnnualVisitorCount = Convert.ToInt32(reader["annualvisitorcount"]);
-                        p.Quote = Convert.ToString(reader["inspirationalquote"]);
-                        p.QuoteSource = Convert.ToString(reader["inspirationalquotesource"]);
-                        p.EntryFee = Convert.ToInt32(reader["entryfee"]);
-                        p.NumberAnimalSpecies = Convert.ToInt32(reader["numberofanimalspecies"]);
-
-
+                        p.YearFounded = Convert.ToInt32(reader["yearFounded"]);
+                        p.AnnualVisitorCount = Convert.ToInt32(reader["annualVisitorCount"]);
+                        p.Quote = Convert.ToString(reader["inspirationalQuote"]);
+                        p.QuoteSource = Convert.ToString(reader["inspirationalQuoteSource"]);
+                        p.EntryFee = Convert.ToInt32(reader["entryFee"]);
+                        p.NumberAnimalSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]);
                     }
                 }
             }
@@ -118,14 +118,12 @@ namespace Capstone.Web.DAL
                         Forecast f = new Forecast()
                         {
                             ForecastDay = Convert.ToInt32(reader["fiveDayForecastValue"]),
-                            HighTemp = Convert.ToInt32(reader["high"]),
-                            LowTemp = Convert.ToInt32(reader["low"]),
+                            HighTemp = Convert.ToDouble(reader["high"]),
+                            LowTemp = Convert.ToDouble(reader["low"]),
                             Condition = Convert.ToString(reader["forecast"])
                         };
-
                         forecast.Add(f);
                     }
-                
                 }
             }
             catch (SqlException)
@@ -137,8 +135,7 @@ namespace Capstone.Web.DAL
         }
 
         public bool SaveSurvey(Survey newsurvey)
-        {
-            
+        { 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -149,8 +146,10 @@ namespace Capstone.Web.DAL
                     cmd.Parameters.AddWithValue("@emailAddress", newsurvey.EmailAddress);
                     cmd.Parameters.AddWithValue("@state", newsurvey.State);
                     cmd.Parameters.AddWithValue("@activityLevel", newsurvey.ActivityLevel);
+
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+
+                    return (rowsAffected > 0);
                 }
 
             }
@@ -163,17 +162,19 @@ namespace Capstone.Web.DAL
         public Dictionary<string,int> GetAllSurveys()
         {
             Dictionary<string,int> surveyResult = new Dictionary<string, int>();
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(SQL_GetAllSurveys, conn);
+
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        surveyResult.Add(Convert.ToString(reader["parkname"]), Convert.ToInt32(reader["count"]));
+                        surveyResult.Add(Convert.ToString(reader["parkName"]), Convert.ToInt32(reader["count"]));
                     }
                 }
 

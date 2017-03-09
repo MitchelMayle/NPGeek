@@ -8,15 +8,17 @@
 </head>
 <body>
     <header>
-        <p>National Park Weather Service</p>
+        <img src="~/Content/img/logo.png" class="logo"/>
     </header>
     <nav>
         <ul>
-            <li>@Html.ActionLink("Home Page", "Index", "Home")</li>
-            <li>@Html.ActionLink("Survey","NewSurvey","Home")</li>
-            <li>@Html.ActionLink("SurveyResult", "SurveyResult","Home")</li>
-
+            <li>@Html.ActionLink("National Parks", "Index", "Home")</li>
+            <li>@Html.ActionLink("New Survey", "NewSurvey", "Home")</li>
+            <li>@Html.ActionLink("Survey Results", "SurveyResult", "Home")</li>
+            <li>@Html.ActionLink("Switch Temperature Type", "Switch", "Home")</li>
         </ul>
+
+
     </nav>
 
     <section id="main">
@@ -24,6 +26,6 @@
         @RenderBody()
 
     </section>
-<footer> <br/> </footer>
+    <footer> <br /> </footer>
 </body>
 </html>

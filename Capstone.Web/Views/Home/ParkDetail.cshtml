@@ -3,10 +3,11 @@
     ViewBag.Title = Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
     DateTime today = DateTime.Now;
+    bool isFahrenheit = (bool)Session["isFahrenheit"];
 }
+
 @using Capstone.Web.Models
 @model Park
-
 
 <h2>@Model.Name, @Model.State</h2>
 <div class="entireparkdetail">
@@ -19,15 +20,13 @@
         <p><span class="textTitle">Miles Of Trails:</span> @Model.MilesOfTrail mi</p>
         <p><span class="textTitle">Number Of Campsites:</span> @Model.NumberOfCampSites.ToString("N0")</p>
         <p><span class="textTitle">Climate:</span> @Model.Climate </p>
-        <p><span class="textTitle">Year Found:</span> @Model.YearFound</p>
+        <p><span class="textTitle">Year Found:</span> @Model.YearFounded</p>
         <p><span class="textTitle">Annual Vister count:</span> @Model.AnnualVisitorCount.ToString("N0") </p>
         <p><span class="textTitle">Entry fee:</span> @Model.EntryFee.ToString("C") </p>
         <p><span class="textTitle">Number of Animal Species:</span> @Model.NumberAnimalSpecies</p>
     </div>
 
     <br />
-
-
 
     <h3 class="weatherTitle">5 Day Weather Forecast for @Model.Name</h3>
 
@@ -38,9 +37,15 @@
             <div class="singleDayForecast">
                 <p class="dayOfWeek">@today.AddDays(forecast.ForecastDay-1).DayOfWeek.ToString()</p>
                 <img src="~/Content/img/weather/@(forecast.Condition).png" class="weatherImage" />
-                <p>@forecast.HighTemp</p>
-                <p>@forecast.LowTemp</p>
-                <p class="condition">@forecast.Condition.ToUpper()</p>
+
+                @if (!isFahrenheit){<p>@forecast.GetCelsius(forecast.HighTemp).ToString("N0")°C</p>}
+                else{<p>@forecast.HighTemp°F</p>}
+
+                
+                @if (!isFahrenheit){<p>@forecast.GetCelsius(forecast.LowTemp).ToString("N0")°C</p>}
+                else{<p>@forecast.LowTemp°F</p>}
+
+                 <p class="condition">@forecast.Condition.ToUpper()</p>
                 <p class="advisory">@forecast.GetAdvisory()</p>
                 <p class="advisory">@forecast.GetTempAdvisory()</p>
             </div>

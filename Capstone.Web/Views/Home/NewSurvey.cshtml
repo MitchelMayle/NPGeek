@@ -2,33 +2,46 @@
 @{
     ViewBag.Title = "Survey";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 @using Capstone.Web.Models
-@model Survey 
+@model Survey
 
-<h2>Survey</h2>
+<h2 class="surveyTitle">Submit A New Park Survey</h2>
+
+
 
 @using (Html.BeginForm("NewSurvey", "Home", FormMethod.Post))
 {
-    <div>@Html.Label("Email Address")
-         @Html.TextBoxFor(m => m.EmailAddress)
-    </div>
+    <table align="center" class="newSurveyTable">
+        <tr class="newSurveyRow">
+            <td>@Html.Label("Email Address")</td>
+            <td>@Html.TextBoxFor(m => m.EmailAddress, new { placeholder = "example@gmail.com" })</td>
+            <td>@Html.ValidationMessageFor(m => m.EmailAddress)</td>
+        </tr>
 
-    <div>@Html.Label("State of Residence")
-         @Html.DropDownListFor( m => m.State,Survey.States)
-    </div>
+        <tr class="newSurveyRow">
+            <td>@Html.Label("State of Residence")</td>
+            <td>@Html.DropDownListFor(m => m.State, Survey.States)</td>
+            <td>@Html.ValidationMessageFor(m => m.State)</td>
+        </tr>
 
-    <div>@Html.Label("Physical Activity Level")
-         @Html.DropDownListFor(m => m.ActivityLevel, Survey.ActivityLevels)
-    </div>
+        <tr class="newSurveyRow">
+            <td>@Html.Label("Physical Activity Level")</td>
+            <td>@Html.DropDownListFor(m => m.ActivityLevel, Survey.ActivityLevels)</td>
+            <td>@Html.ValidationMessageFor(m => m.ActivityLevel)</td>
+        </tr>
 
-    <div>@Html.Label("Select your Favorite Park")
-         @Html.DropDownListFor( m =>m.ParkCode,Model.ParkNames)
-      
-    </div>
+        <tr class="newSurveyRow">
+            <td>@Html.Label("Select your Favorite Park")</td>
+            <td>@Html.DropDownListFor(m => m.ParkCode, Model.ParkNames)</td>
+            <td>@Html.ValidationMessageFor(m => m.ParkCode)</td>
+        </tr>
+    </table>
 
-  <button>Submit Survey</button>
+    <br />
+
+    <button>Submit Survey</button>
 
 }
 

@@ -7,8 +7,8 @@ namespace Capstone.Web.Models
 {
     public class Forecast
     {
-        public int HighTemp { get; set; }
-        public int LowTemp { get; set; }
+        public double HighTemp { get; set; }
+        public double LowTemp { get; set; }
         public string Condition { get; set; }
         public int ForecastDay { get; set; }
 
@@ -37,19 +37,24 @@ namespace Capstone.Web.Models
         public string GetTempAdvisory()
         {
             string tempAdvice = "";
-            if(HighTemp>=75)
+            if(HighTemp > 75)
             {
                 tempAdvice += "The temperature is higher than 75, make sure you bring an extra gallon of water. ";
             }
-            if(HighTemp-LowTemp >=20)
+            if(HighTemp-LowTemp > 20)
             {
                 tempAdvice += "Wear breathable layers clothes. ";
             }
            if(LowTemp<20)
             {
-                tempAdvice += "Temperature is lower than 20, beware of the dangers of exposure to frigid temperatures. ";
+                tempAdvice += "Beware of the dangers of exposure to frigid temperatures. ";
             }
             return tempAdvice;
+        }
+
+        public double GetCelsius(double temperature)
+        {
+            return ((temperature - 32) * 5) / 9;
         }
     }
 }

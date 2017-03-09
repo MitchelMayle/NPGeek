@@ -6,10 +6,10 @@
 @using Capstone.Web.Models
 @model Dictionary<string,int>
 
-<h2>SurveyResult</h2>
-<table align="center">
+<h2 class="surveyResultTitle">Park Votes</h2>
+<table align="center" class="resultTable">
     <thead class="heading">
-        <tr>
+        <tr class="resultRow">
             <td> Park Name</td>
             <td> Number of Votes</td>
         </tr>
@@ -18,7 +18,7 @@
 
         @foreach (KeyValuePair<string, int> kvp in Model)
         {
-            <tr>
+            <tr class="resultRow">
                 <td> @kvp.Key </td>
                 <td> @kvp.Value</td>                
              </tr>        

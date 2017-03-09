@@ -3,11 +3,16 @@
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: black;
 }
 
-/* Header Styles */
+footer {
+    background-color: black;
+}
+
+
 header {
-    background-color: #333333;
+    background-color: #808080;
     padding: 10px;
 }
 
@@ -16,13 +21,14 @@ header {
         font-weight: bold;
     }
 
-/* Navigation Styles */
+
 nav {
-    background-color: #f2f2f2;
-    margin: 0 0 1em 0;
+    background-color: #1FC909;
+    margin: 0;
     padding: 0;
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
+    border-color: #5E3B04;
 }
 
     nav ul {
@@ -37,7 +43,8 @@ nav {
             nav ul li a {
                 padding: 8px 15px;
                 border-right: 1px solid #ccc;
-                color: #000000;
+                border-color: #5E3B04;
+                color: #5E3B04;
                 text-decoration: none;
                 font-weight: bold;
             }
@@ -47,31 +54,25 @@ nav {
                     color: #c00;
                 }
 
-/* Footer Styles */
 
 #main {
-    width: 100%;
+    clear: both;
+    display: block;
+    width: 90%;
+    margin: 20px auto;
+    vertical-align: top;
+    min-height: 450px;
+    background-color: lightblue;
+    border-radius: 7px;
 }
 
 
-/* 3 Column Layout */
-.container {
-    width: 100%;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-}
+    /* Form Layout */
 
-
-/* Form Layout */
-
-#main h2 {
-    text-align: center;
-}
-
-.center {
-    text-align: center;
-}
+    #main h2 {
+        text-align: center;
+        font-size: xx-large;
+    }
 
 input[type=text],
 input[type=password],
@@ -89,37 +90,8 @@ section.result {
     text-align: center;
 }
 
-.formInputGroup,
-.formInputGroup-radio {
-    width: 50%;
-    margin-bottom: .5em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.formValidationGroup {
-    width: 90%;
-    margin-bottom: .5em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.formInputGroup-radio {
-    text-align: center;
-}
-
-.formInputGroup label,
-.formValidationGroup label {
-    display: inline-block;
-    width: 10em;
-    text-align: right;
-}
-
-.formSubmitButton {
-    display: block;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+.logo {
+    width: 25%;
 }
 
 .entirePark {
@@ -158,11 +130,11 @@ p {
 }
 
 .quote {
-    color: lightseagreen;
+    color: slategrey;
+    font-weight: bold;
 }
 
 .imgdiv {
-    margin-left: 30%;
 }
 
 .weather {
@@ -170,7 +142,6 @@ p {
     flex: 1;
     justify-content: center;
     text-align: center;
-    
 }
 
 .weatherImage {
@@ -183,11 +154,12 @@ p {
 
 .singleDayForecast {
     margin: 1%;
+    width: 50%;
 }
 
-.dayOfWeek{
+.dayOfWeek {
     font-weight: bold;
-    color: #9020a6;
+    color:;
 }
 
 .condition {
@@ -196,10 +168,12 @@ p {
 
 .advisory {
     font-style: italic;
+    word-break: break-all;
 }
+
 table {
     border-collapse: collapse;
-    width: 45%;
+    width: 30%;
 }
 
 td {
@@ -207,12 +181,19 @@ td {
     padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
-
-.heading  {
-    background-color: #4CAF50;
+.heading {
+    background-color: #1FC909;
     color: white;
-    font-weight:bold;
-    text-align:center;
-     padding: 8px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+}
+
+.newSurveyTable {
+    width: auto;
+}
+
+.resultTable, .resultRow {
+    border: solid;
+    border-color: black;
 }

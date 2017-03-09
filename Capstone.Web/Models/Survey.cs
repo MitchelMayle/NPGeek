@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,15 +9,21 @@ namespace Capstone.Web.Models
 {
     public class Survey
     {
-
+        [Required(ErrorMessage = "Select a park from the dropdown menu.")]
         public string ParkCode { get; set; }
+
+        [Required]
+        [EmailAddress(ErrorMessage = "Provide a valid email address.")]
         public string EmailAddress { get; set; }
+
+        [Required(ErrorMessage = "Select a state from the dropdown menu.")]
         public string State { get; set; }
+
+        [Required(ErrorMessage = "Select an activity level from the dropdown menu.")]
         public string ActivityLevel { get; set; }
 
         public List<SelectListItem> ParkNames { get; set; } = new List<SelectListItem>();
        
-
         public static List<SelectListItem> ActivityLevels { get; } = new List<SelectListItem>()
         {
             new SelectListItem() {Text="Inactive",Value="Inactive" },
@@ -25,6 +32,7 @@ namespace Capstone.Web.Models
             new SelectListItem() {Text="Extremely Active",Value="Extremely Active" }
 
         };
+
         public static List<SelectListItem> States { get; } = new List<SelectListItem>()
         {
             new SelectListItem() {Text="Alabama",Value="AL" },
@@ -81,8 +89,6 @@ namespace Capstone.Web.Models
             new SelectListItem() {Text="West Virginia",Value="WV" },
             new SelectListItem() {Text="Wisconsin",Value="WI" },
             new SelectListItem() {Text="Wyoming",Value="WY" },
-
         };
-
     }
 }

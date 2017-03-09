@@ -18,6 +18,11 @@ namespace Capstone.Web.Controllers
         
         public ActionResult Index()
         {
+            if (Session["isFahrenheit"] == null)
+            {
+                Session["isFahrenheit"] = true;
+            }
+
             return View("Index", parkDAL.GetAllParks());
         }
 
@@ -35,26 +40,46 @@ namespace Capstone.Web.Controllers
         {
             List<Park> Parks = parkDAL.GetAllParks();
             Survey survey = new Survey();
+
             foreach(var park in Parks)
             {
                 survey.ParkNames.Add(new SelectListItem{ Text = park.Name, Value = park.ParkImage });
 
             }
-            return View("NewSurvey",survey);
+
+            return View("NewSurvey", survey);
         }
+
         [HttpPost]
         public ActionResult NewSurvey(Survey newSurvey)
         {
-            parkDAL.SaveSurvey(newSurvey);
+            List<Park> Parks = parkDAL.GetAllParks();
 
+            if (!ModelState.IsValid)
+            {
+                foreach (var park in Parks)
+                {
+                   newSurvey.ParkNames.Add(new SelectListItem { Text = park.Name, Value = park.ParkImage });
+
+                }
+
+                return View("NewSurvey", newSurvey);
+            }
+
+            parkDAL.SaveSurvey(newSurvey);
             return RedirectToAction("SurveyResult");
         }
 
         public ActionResult SurveyResult()
         {
             return View("SurveyResult", parkDAL.GetAllSurveys());
-
         }
 
+        public ActionResult Switch()
+        {
+            Session["isFahrenheit"] = !(bool)Session["isFahrenheit"];
+
+            return View("Index", parkDAL.GetAllParks());
+        }
     }
 }
