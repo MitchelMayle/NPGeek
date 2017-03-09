@@ -11,5 +11,7 @@ namespace Capstone.Web.DAL
         List<Park> GetAllParks();
         Park GetParkDetail(string parkName);
         List<Forecast> GetFiveDayForecast(string parkCode);
+        bool SaveSurvey(Survey newSurvey);
+        Dictionary<string,int>GetAllSurveys();
     }
 }

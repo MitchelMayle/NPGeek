@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "SurveyResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Capstone.Web.Models
+@model Dictionary<string,int>
+
+<h2>SurveyResult</h2>
+<table align="center">
+    <thead class="heading">
+        <tr>
+            <td> Park Name</td>
+            <td> Number of Votes</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (KeyValuePair<string, int> kvp in Model)
+        {
+            <tr>
+                <td> @kvp.Key </td>
+                <td> @kvp.Value</td>                
+             </tr>        
+        }
+    </tbody>
+</table>

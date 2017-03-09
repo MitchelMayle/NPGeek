@@ -13,6 +13,9 @@ namespace Capstone.Web.DAL
         private const string SQL_GetParkDetails = "SELECT * FROM park where parkName=@parkName;";
         private const string SQL_GetFiveDayForecast = "SELECT * FROM weather WHERE parkCode = @parkCode;";
 
+        private const string SQL_SaveSurvey = "INSERT INTO survey_result values(@parkCode,@emailAddress,@state,@activityLevel);";
+        private const string SQL_GetAllSurveys = "SELECT park.parkname,count(survey_result.parkcode) as count FROM survey_result INNER JOIN park on park.parkcode=survey_result.parkcode GROUP BY park.parkname;";
+
         private string connectionString;
         public ParkSqlDAL(string connectionString)
         {
@@ -131,6 +134,56 @@ namespace Capstone.Web.DAL
             }
 
             return forecast;
+        }
+
+        public bool SaveSurvey(Survey newsurvey)
+        {
+            
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_SaveSurvey, conn);
+                    cmd.Parameters.AddWithValue("@parkCode", newsurvey.ParkCode);
+                    cmd.Parameters.AddWithValue("@emailAddress", newsurvey.EmailAddress);
+                    cmd.Parameters.AddWithValue("@state", newsurvey.State);
+                    cmd.Parameters.AddWithValue("@activityLevel", newsurvey.ActivityLevel);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+
+            }
+            catch(SqlException )
+            {
+                throw;
+            }
+        }
+
+        public Dictionary<string,int> GetAllSurveys()
+        {
+            Dictionary<string,int> surveyResult = new Dictionary<string, int>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(SQL_GetAllSurveys, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        surveyResult.Add(Convert.ToString(reader["parkname"]), Convert.ToInt32(reader["count"]));
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return surveyResult;
         }
     }
 }
