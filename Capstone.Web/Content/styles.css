@@ -155,11 +155,12 @@ p {
 .singleDayForecast {
     margin: 1%;
     width: 50%;
+    border: solid;
+    padding: 1%;
 }
 
 .dayOfWeek {
     font-weight: bold;
-    color:;
 }
 
 .condition {
