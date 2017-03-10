@@ -21,6 +21,5 @@ namespace Capstone.UITests.PageObjects
             park.Click();
             return new ParkDetailPage(driver);
         }
-
     }
 }

@@ -36,7 +36,8 @@ namespace Capstone.UITests.StepDefinitions
         {
             ParkPage parkPage = new ParkPage(context.Driver);
             ParkDetailPage parkDetailPage = parkPage.SelectPark(parkName);
-            ScenarioContext.Current.Set(parkDetailPage,"Current_Page");
+
+            ScenarioContext.Current.Set(parkDetailPage, "Current_Page");
         }
 
         [Then(@"I should See Details of ""(.*)""")]
@@ -44,8 +45,7 @@ namespace Capstone.UITests.StepDefinitions
         {
             ParkDetailPage parkDetailPage = ScenarioContext.Current.Get<ParkDetailPage>("Current_Page");
 
-            Assert.AreEqual(parkName, parkDetailPage.ParkTitle);
+            Assert.AreEqual(parkName, parkDetailPage.ParkTitle.Text);
         }
-
     }
 }

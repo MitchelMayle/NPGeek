@@ -31,7 +31,7 @@ namespace Capstone.Web.Models
                 return "Pack snowshoes.";
             }
             else
-                return "Cloudy sky.";
+                return "Cloudy skies.";
         }
 
         public string GetTempAdvisory()
@@ -47,7 +47,7 @@ namespace Capstone.Web.Models
             }
            if(LowTemp<20)
             {
-                tempAdvice += "Beware of the dangers of exposure to frigid temperatures. ";
+                tempAdvice += "Beware of the dangers of exposure to frigid temperatures.";
             }
             return tempAdvice;
         }

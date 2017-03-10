@@ -10,7 +10,6 @@ namespace Capstone.UITests.PageObjects
 {
     public class ParkDetailPage : BasePage
     {
-
         public ParkDetailPage(IWebDriver driver) : base(driver, "/Home/ParkDetail")
         {
             PageFactory.InitElements(driver, this);
@@ -18,7 +17,5 @@ namespace Capstone.UITests.PageObjects
 
         [FindsBy(How = How.ClassName,Using="parkTitle")]
         public IWebElement ParkTitle { get; set; }
-
-
     }
 }
