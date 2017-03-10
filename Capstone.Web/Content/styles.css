@@ -196,4 +196,5 @@ td {
 .resultTable, .resultRow {
     border: solid;
     border-color: black;
+    width: 40%;
 }
