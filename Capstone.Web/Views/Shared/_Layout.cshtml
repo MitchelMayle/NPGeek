@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    bool isFahrenheit = (bool)Session["isFahrenheit"];
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -15,7 +19,9 @@
             <li>@Html.ActionLink("National Parks", "Index", "Home")</li>
             <li>@Html.ActionLink("New Survey", "NewSurvey", "Home")</li>
             <li>@Html.ActionLink("Survey Results", "SurveyResult", "Home")</li>
-            <li>@Html.ActionLink("Switch Temperature Type", "Switch", "Home")</li>
+            @if (isFahrenheit) {<li>@Html.ActionLink("Change Temperature To Celsius", "Switch", "Home")</li> }
+            else{<li>@Html.ActionLink("Change Temperature To Fahrenheit", "Switch", "Home")</li> }
+            
         </ul>
 
 

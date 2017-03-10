@@ -24,5 +24,6 @@ namespace Capstone.Web.Models
         public string QuoteSource { get; set; }
         public int EntryFee { get; set; }
         public int NumberAnimalSpecies { get; set; }
+        public bool IsFahrenheit { get; set; }
     }
 }

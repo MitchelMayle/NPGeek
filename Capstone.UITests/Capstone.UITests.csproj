@@ -73,12 +73,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Features\Park.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Park.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Default.srprofile">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Features\Park.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Park.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="runtests.cmd" />
@@ -90,7 +99,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
     <Folder Include="StepDefinitions\" />
   </ItemGroup>
   <Choose>

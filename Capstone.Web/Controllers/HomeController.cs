@@ -32,6 +32,8 @@ namespace Capstone.Web.Controllers
 
             park.FiveDayForecast = parkDAL.GetFiveDayForecast(park.ParkImage);
 
+            park.IsFahrenheit = (bool)Session["isFahrenheit"];
+
             return View("ParkDetail", park);
         }
 
@@ -79,7 +81,12 @@ namespace Capstone.Web.Controllers
         {
             Session["isFahrenheit"] = !(bool)Session["isFahrenheit"];
 
-            return View("Index", parkDAL.GetAllParks());
+            if (Request.UrlReferrer == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }
