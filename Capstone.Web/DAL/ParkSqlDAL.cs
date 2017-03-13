@@ -59,7 +59,7 @@ namespace Capstone.Web.DAL
 
         public Park GetParkDetail(string parkName)
         {
-            Park p = new Park();
+            Park p = null;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -73,6 +73,8 @@ namespace Capstone.Web.DAL
 
                     while (reader.Read())
                     {
+                        p = new Park();
+
                         p.Name = Convert.ToString(reader["parkName"]);
                         p.State = Convert.ToString(reader["state"]);
                         p.Description = Convert.ToString(reader["parkDescription"]);

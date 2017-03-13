@@ -18,17 +18,22 @@ namespace Capstone.Web.Controllers
         
         public ActionResult Index()
         {
-            if (Session["isFahrenheit"] == null)
-            {
-                Session["isFahrenheit"] = true;
-            }
-
             return View("Index", parkDAL.GetAllParks());
         }
 
         public ActionResult ParkDetail(string parkName)
         {
             Park park = parkDAL.GetParkDetail(parkName);
+
+            if (park == null)
+            {
+                return HttpNotFound();
+            }
+
+            if (Session["isFahrenheit"] == null)
+            {
+                Session["isFahrenheit"] = true;
+            }
 
             park.FiveDayForecast = parkDAL.GetFiveDayForecast(park.ParkImage);
 
