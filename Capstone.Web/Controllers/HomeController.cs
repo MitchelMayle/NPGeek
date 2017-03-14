@@ -15,9 +15,14 @@ namespace Capstone.Web.Controllers
         {
             this.parkDAL = parkDAL;
         }
-        
+
         public ActionResult Index()
         {
+            if (Session["isFahrenheit"] == null)
+            {
+                Session["isFahrenheit"] = true;
+            }
+
             return View("Index", parkDAL.GetAllParks());
         }
 
@@ -48,10 +53,9 @@ namespace Capstone.Web.Controllers
             List<Park> Parks = parkDAL.GetAllParks();
             Survey survey = new Survey();
 
-            foreach(var park in Parks)
+            foreach (var park in Parks)
             {
-                survey.ParkNames.Add(new SelectListItem{ Text = park.Name, Value = park.ParkImage });
-
+                survey.ParkNames.Add(new SelectListItem { Text = park.Name, Value = park.ParkImage });
             }
 
             return View("NewSurvey", survey);
@@ -66,8 +70,7 @@ namespace Capstone.Web.Controllers
             {
                 foreach (var park in Parks)
                 {
-                   newSurvey.ParkNames.Add(new SelectListItem { Text = park.Name, Value = park.ParkImage });
-
+                    newSurvey.ParkNames.Add(new SelectListItem { Text = park.Name, Value = park.ParkImage });
                 }
 
                 return View("NewSurvey", newSurvey);
