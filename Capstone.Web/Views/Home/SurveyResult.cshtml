@@ -1,10 +1,9 @@
-﻿
+﻿@model Dictionary<string, int>
 @{
     ViewBag.Title = "SurveyResult";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using Capstone.Web.Models
-@model Dictionary<string,int>
 
 <h2 class="surveyResultTitle">Park Votes</h2>
 <table align="center" class="resultTable">
@@ -20,8 +19,8 @@
         {
             <tr class="resultRow">
                 <td> @kvp.Key </td>
-                <td> @kvp.Value</td>                
-             </tr>        
+                <td> @kvp.Value</td>
+            </tr>
         }
     </tbody>
 </table>

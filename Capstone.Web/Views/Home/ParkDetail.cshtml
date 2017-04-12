@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
     DateTime today = DateTime.Now;
@@ -30,33 +29,37 @@
     <h3 class="weatherTitle">5 Day Weather Forecast for @Model.Name</h3>
 
     <div class="weather">
-        
+
         @foreach (Forecast forecast in Model.FiveDayForecast)
         {
             <div class="singleDayForecast">
-                
-                    
-                        @if(today.AddDays(forecast.ForecastDay-1).DayOfWeek==today.DayOfWeek)
-                         {
-                              <p class="dayOfWeek"> Today </p>
-                         }
-                        else
-                         {
-                              <p class="dayOfWeek">@today.AddDays(forecast.ForecastDay-1).DayOfWeek.ToString() </p>
-                         }
-                     
+
+                @if (today.AddDays(forecast.ForecastDay - 1).DayOfWeek == today.DayOfWeek)
+                {
+                    <p class="dayOfWeek"> Today </p>
+                }
+                else
+                {
+                    <p class="dayOfWeek">@today.AddDays(forecast.ForecastDay - 1).DayOfWeek.ToString() </p>
+                }
+
                 <img src="~/Content/img/weather/@(forecast.Condition).png" class="weatherImage" />
 
-                @if (!@Model.IsFahrenheit){<p>@forecast.GetCelsius(forecast.HighTemp).ToString("N0")°C</p>}
-                else{<p>@forecast.HighTemp°F</p>}
+                @if (!@Model.IsFahrenheit)
+                {<p>@forecast.GetCelsius(forecast.HighTemp).ToString("N0")°C</p>}
+                else
+                {<p>@forecast.HighTemp°F</p>}
 
-                
-                @if (!@Model.IsFahrenheit){<p>@forecast.GetCelsius(forecast.LowTemp).ToString("N0")°C</p>}
-                else{<p>@forecast.LowTemp°F</p>}
 
-                 <p class="condition">@forecast.Condition.ToUpper()</p>
+                @if (!@Model.IsFahrenheit)
+                {<p>@forecast.GetCelsius(forecast.LowTemp).ToString("N0")°C</p>}
+                else
+                {<p>@forecast.LowTemp°F</p>}
+
+                <p class="condition">@forecast.Condition.ToUpper()</p>
                 <p class="advisory">@forecast.GetAdvisory()</p>
                 <p class="advisory">@forecast.GetTempAdvisory()</p>
+
             </div>
         }
     </div>

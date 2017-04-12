@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Survey";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -8,8 +7,6 @@
 @model Survey
 
 <h2 class="surveyTitle">Submit A New Park Survey</h2>
-
-
 
 @using (Html.BeginForm("NewSurvey", "Home", FormMethod.Post))
 {
@@ -42,7 +39,4 @@
     <br />
 
     <button>Submit Survey</button>
-
 }
-
-

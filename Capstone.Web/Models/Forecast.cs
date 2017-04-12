@@ -43,7 +43,7 @@ namespace Capstone.Web.Models
             }
             if(HighTemp-LowTemp > 20)
             {
-                tempAdvice += "Wear breathable layers clothes. ";
+                tempAdvice += "Wear breathable layers of clothing. ";
             }
            if(LowTemp<20)
             {
